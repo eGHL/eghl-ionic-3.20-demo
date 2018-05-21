@@ -4,7 +4,6 @@ This is an example that is using cordova-plugin-eghl on ionic 3.20
 function proceedPayment(){
     eGHL.makePayment(
         {
-            /*
             * Mandatory payment parameters list:
 
             * transactionType, paymentMethod, serviceId, paymentId, orderNumber, paymentDesc,
