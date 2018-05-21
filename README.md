@@ -1,8 +1,6 @@
 # eghl-ionic-3.20-demo
 This is an example that is using cordova-plugin-eghl on ionic 3.20
 
-document.getElementById("btnPay").addEventListener("click", proceedPayment);
-
 function proceedPayment(){
     eGHL.makePayment(
         {
