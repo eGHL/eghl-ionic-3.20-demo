@@ -59,7 +59,7 @@ export class HomePage {
         CustMAC : '',
         MerchantApprovalURL : '',
         MerchantUnApprovalURL : '',
-        MerchantCallbackUrl : '', // server callback url is called if any unexpected crash or lost of connection during making payment
+        MerchantCallBackUrl : '', // server callback url is called if any unexpected crash or lost of connection during making payment
         LanguageCode : 'EN',
         PageTimeout : '500', // timeout in seconds
         CardHolder : '',
