@@ -20,7 +20,7 @@ export class HomePage {
 
     pay(){
     //alert(eGHL.version);
-    var orderId = Math.floor(Math.random() * 90000) + 10000;
+    var orderId = ""+ Math.floor(Math.random() * 90000) + 10000;
     const data = {
         /*
         * Mandatory payment parameters list:
