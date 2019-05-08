@@ -22,90 +22,84 @@ export class HomePage {
     //alert(eGHL.version);
     var orderId = ""+ Math.floor(Math.random() * 90000) + 10000;
     const data = {
-        /*
+      /*
         * Mandatory payment parameters list:
-
-        * transactionType, paymentMethod, serviceId, paymentId, orderNumber, paymentDesc,
-        * merchantReturnUrl, amount, currencyCode, custIp, custName, custEmail, custPhone
-
+        * TransactionType, PymtMethod, ServiceID, PaymentID, OrderNumber, PaymentDesc, MerchantReturnURL, Amount, CurrencyCode, CustIp, CustName, CustEmail, CustPhone
         * Check the eGHL documentation for parameter names.
-
-        * [All Field are defined as String], Except paymentTimeout and sdkTimeout.
-
-        * NOTE: Parameter names and spelling follow iOS, wherever the Android and iOS
-        * names differ!
         */
+        
+        TransactionType : "SALE",
+        PymtMethod : "ANY",
+        CurrencyCode : "MYR",
 
-        // List of accepted params and some value detail (refer docs for more detail):
-        CurrencyCode : 'MYR',  
-        PymtMethod : 'ANY',
-        TransactionType : 'SALE',
-        PaymentGateway: 'https://test2pay.ghl.com/IPGSG/Payment.aspx', // Payment gateway URL given by eGHL
-        ServiceID : 'SIT', //Merchant Code or Service ID given by eGHL
-        Password: 'sit12345', // Merchant password given by eGHL
+        PaymentGateway: "https://test2pay.ghl.com/IPGSG/Payment.aspx", // Payment gateway URL given by eGHL
+        ServiceID : "SIT", //Merchant Code or Service ID given by eGHL
+        Password: "sit12345", // Merchant password given by eGHL
+        MerchantName : "ABC Sdn Bhd",
+        
         PaymentID : orderId, // Unique string for each payment
         OrderNumber : orderId, // Order number to refer current payment, can duplicate.
-        PaymentDesc : 'eGHL Ionic Payment Testing',
-        MerchantReturnURL :  'SDK', // redirect when payment complete.
-        Amount : '1.00', // e.g. 1000.00 for IDR Invalid format: 1,000.00 or 1000
-                        // Invalid format: 1,000.00 or 1000
-        CustIP : '', // customer ip address captured by merchant 
-        CustName : 'Beta Tester',
-        CustEmail : 'Tester@mail.com',
-        CustPhone : '60123456789',
-        B4TaxAmt : '',
-        TaxAmt : '',
-        MerchantName : 'ABC Sdn Bhd',
-        CustMAC : '',
-        MerchantApprovalURL : '',
-        MerchantUnApprovalURL : '',
-        MerchantCallBackUrl : '', // server callback url is called if any unexpected crash or lost of connection during making payment
-        LanguageCode : 'EN',
-        PageTimeout : '500', // timeout in seconds
-        CardHolder : '',
-        CardNo : '',
-        CardExp : '',
-        CardCVV2 : '',
-        IssuingBank : '',
-        BillAddr : '',
-        BillPostal : '',
-        BillCity : '',
-        BillRegion : '',
-        BillCountry : '',
-        HashValue : '',
-        ShipAddr : '',
-        ShipPostal : '',
-        ShipCity : '',
-        ShipRegion : '',
-        ShipCountry : '',
-        SessionID : '',
-        TokenType : '',
-        Token : '',
-        Param6 : '',
-        Param7 : '',
-        EPPMonth : '',
-        PromoCode : '',
-        ReqToken : '',
-        PairingToken : '',
-        ReqVerifier : '',
-        PairingVerifier : '',
-        CheckoutResourceURL : '',
-        CardId : '',
-        PreCheckoutId : '',
-        PaymentTimeout : -1,
-        sdkTimeout: 60, // seconds
-        _finaliseMessage: 'Optional message for Finalising Payment (iOS Only)',
-        _cancelMessage: 'Optional message for Cancelling Payment (iOS Only)',
+        PaymentDesc : "eGHL Ionic Payment Testing",
+        Amount : "123.10", // e.g. 1000.00
+                       // Invalid format: 1,000.00 or 1000
+        CustName : "Beta Tester",
+        CustEmail : "Tester@mail.com",
+        CustPhone : "60123456789",
+        CustMAC : "",
+        CustIP : "",
+        MerchantReturnURL :  "SDK", // redirect when payment complete.
+        MerchantCallBackURL : "https://...", // server to server callback url
+        MerchantApprovalURL : "https://...",
+        MerchantUnApprovalURL : "https://...",
+        LanguageCode : "EN",
+        PageTimeout : "600", // eGHL payment page timeout in seconds
+        CardHolder : "",
+        CardNo : "",
+        CardExp : "",
+        CardCVV2 : "",
+        IssuingBank : "",
+        TokenType : "",
+        Token : "",
+        Param6 : "",
+        Param7 : "",
+        B4TaxAmt : "",
+        TaxAmt : "",
+        BillAddr : "",
+        BillPostal : "",
+        BillCity : "",
+        BillRegion : "",
+        BillCountry : "",
+        ShipAddr : "",
+        ShipPostal : "",
+        ShipCity : "",
+        ShipRegion : "",
+        ShipCountry : "",
+        SessionID : "",
+        EPPMonth : "",
+        PromoCode : "",
+        
+        // SDK exclusive
+        PaymentTimeout : -1, // Android: Force close webview after x seconds
+        sdkTimeout: -1, // iOS: Force close webview after x seconds
+        _finaliseMessage: "Finalising Payment", // iOS only
+        _cancelMessage: "Cancelling Payment", // iOS only
+        
+        // Masterpass exclusive
+        ReqToken : "",
+        PairingToken : "",
+        ReqVerifier : "",
+        PairingVerifier : "",
+        CheckoutResourceURL : "",
+        CardId : "",
+        PreCheckoutId : "",
     };
 
-    console.log(JSON.stringify(data));
-    
     eGHL.makePayment(data,
         function (resp) {
-            alert(resp);
+            alert(JSON.stringify(resp));
         },
         function (err) {
-            alert(err);
+            alert(JSON.stringify(err));
 
         }
     );
